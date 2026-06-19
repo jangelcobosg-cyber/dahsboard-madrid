@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Comercial - Grupo Acerca</title>
+    <style>
+        /* Estilos generales del Dashboard Oscuro */
+        body {
+            background-color: #0b0b0e;
+            color: #f1f1f5;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 25px;
+            width: 100%;
+            max-width: 1550px;
+            height: 88vh;
+        }
+
+        /* Responsive para pantallas medianas o móviles */
+        @media (max-width: 1100px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                height: auto;
+                gap: 20px;
+            }
+        }
+
+        /* Contenedores de columnas comunes */
+        .col {
+            background-color: #13131a;
+            border-radius: 16px;
+            border: 1px solid #22222d;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        /* COLUMNA IZQUIERDA: Ranking */
+        .ranking-title {
+            color: #FF8600;
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #FF8600;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ranking-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-right: 5px;
+        }
+
+        /* Barra de scroll personalizada para diseño oscuro */
+        .ranking-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .ranking-list::-webkit-scrollbar-track {
+            background: #13131a;
+        }
+        .ranking-list::-webkit-scrollbar-thumb {
+            background: #2a2a3d;
+            border-radius: 3px;
+        }
+        .ranking-list::-webkit-scrollbar-thumb:hover {
+            background: #FF8600;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            background-color: #1a1a24;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border-left: 4px solid #3a3a4f;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .ranking-item:hover {
+            transform: translateX(4px);
+            background-color: #21212e;
+        }
+
+        /* Estilos dinámicos para el Top 3 */
+        .ranking-item.top-1 { border-left-color: #FF8600; background: linear-gradient(90deg, #2b1703, #1a1a24); box-shadow: 0 0 15px rgba(255, 134, 0, 0.15); }
+        .ranking-item.top-2 { border-left-color: #ffaa44; }
+        .ranking-item.top-3 { border-left-color: #ffcc88; }
+
+        .position {
+            font-size: 1.3rem;
+            font-weight: bold;
+            width: 35px;
+            color: #797991;
+        }
+        .top-1 .position { color: #FF8600; font-size: 1.5rem; }
+        .top-2 .position { color: #ffaa44; }
+        .top-3 .position { color: #ffcc88; }
+
+        .name {
+            flex: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 10px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 12px;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #0d0d12;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .stat-box.contracts { color: #FF8600; }
+        .stat-box.cups { color: #a0a0b8; }
+
+        /* COLUMNA CENTRAL: Título Principal */
+        .center-col {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #241404 0%, #13131a 100%);
+            border: 1px solid #412403;
+        }
+
+        .center-col h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .center-col h2 {
+            font-size: 1.9rem;
+            margin: 15px 0 0 0;
+            color: #FF8600;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .center-icon {
+            font-size: 5rem;
+            margin-top: 40px;
+            filter: drop-shadow(0 0 15px rgba(255, 134, 0, 0.4));
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* COLUMNA DERECHA: Contadores y Barras Modernas */
+        .right-col {
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .right-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .widget-card {
+            background-color: #1a1a24;
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            border: 1px solid #252538;
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .widget-label {
+            font-size: 0.95rem;
+            color: #9292a6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .widget-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Color especial para contratos hechos */
+        .card-hechos .widget-value { color: #FF8600; }
+        .card-hechos { border-left: 4px solid #FF8600; }
+
+        /* Contenedor de la barra de progreso */
+        .progress-container {
+            background-color: #0d0d12;
+            height: 12px;
+            border-radius: 6px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            width: 0%; /* Se actualiza con JS */
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Colores de las barras */
+        .card-objetivo .progress-fill { background-color: #4a4a61; width: 100%; }
+        .card-hechos .progress-fill { 
+            background: linear-gradient(90deg, #ff5100, #FF8600); 
+            box-shadow: 0 0 10px rgba(255, 134, 0, 0.6);
+        }
+        .card-restantes .progress-fill { background: linear-gradient(90deg, #3d3d5c, #5c5c8a); }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="col">
+            <div class="ranking-title">
+                <span>🏆 Top 10 Ventas</span>
+            </div>
+            <div class="ranking-list" id="ranking-list">
+                <div style="color: #666; text-align: center; margin-top: 30px;">Cargando ranking...</div>
+            </div>
+        </div>
+
+        <div class="col center-col">
+            <h1>Equipo Madrid</h1>
+            <h2>Grupo Acerca</h2>
+            <div class="center-icon">📊</div>
+        </div>
+
+        <div class="col right-col">
+            <div class="right-title">Métricas de Equipo</div>
+
+            <div class="widget-card card-objetivo">
+                <div class="widget-header">
+                    <div class="widget-label">🎯 Objetivo Diario</div>
+                    <div class="widget-value" id="val-objetivo">0</div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="widget-card card-hechos">
+                <div class="widget-header">
+                    <div class="widget-label">🚀 Contratos Hechos</div>
+                    <div class="widget-value" id="val-hechos">0</div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-fill" id="fill-hechos"></div>
+                </div>
+            </div>
+
+            <div class="widget-card card-restantes">
+                <div class="widget-header">
+                    <div class="widget-label">⏳ Restantes para Objetivo</div>
+                    <div class="widget-value" id="val-restantes">0</div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-fill" id="fill-restantes"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+// CONFIGURACIÓN PRINCIPAL: Ya tiene tu enlace largo y correcto
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJouw7E7O5oK5E3RNuAxLKweuPUpK8-ZFGdF5BRy8yS4UuVeLjrbpHV-J7-Bz3E3PJ5g9eT7ib9szp/pub?gid=0&single=true&output=csv'; 
+const REFRESH_INTERVAL = 4000; // 4 segundos
+
+// Función experta que detecta automáticamente si hay comas (,) o puntos y comas (;)
+function parseCSV(text) {
+    const delimiter = text.includes(';') ? ';' : ',';
+    let rows = [], row = [], currentCell = '', insideQuotes = false;
+    
+    for (let i = 0; i < text.length; i++) {
+        let char = text[i], nextChar = text[i + 1];
+        if (char === '"' && insideQuotes && nextChar === '"') { currentCell += '"'; i++; } 
+        else if (char === '"') { insideQuotes = !insideQuotes; } 
+        else if (char === delimiter && !insideQuotes) { row.push(currentCell.trim()); currentCell = ''; } 
+        else if ((char === '\n' || char === '\r') && !insideQuotes) {
+            if (char === '\r' && nextChar === '\n') i++;
+            row.push(currentCell.trim()); rows.push(row); row = []; currentCell = '';
+        } else { currentCell += char; }
+    }
+    if (currentCell !== '' || row.length > 0) { row.push(currentCell.trim()); rows.push(row); }
+    return rows;
+}
+
+async function fetchDashboardData() {
+    const rankingContainer = document.getElementById('ranking-list');
+
+    // Validación corregida (sin trampa)
+    if (!CSV_URL || CSV_URL === '') {
+        rankingContainer.innerHTML = '<div style="color: #ffaa44; text-align: center; margin-top: 30px;">⚠️ Falta pegar el enlace CSV en el código.</div>';
+        return;
+    }
+
+    try {
+        const cacheBusterUrl = `${CSV_URL}&t=${new Date().getTime()}`;
+        const response = await fetch(cacheBusterUrl);
+        
+        if (!response.ok) throw new Error(`Google rechazó la conexión (Error ${response.status}).`);
+        
+        const csvText = await response.text();
+        
+        if (csvText.trim().startsWith('<')) {
+            throw new Error('Google está devolviendo una web. Asegúrate de que publicaste la hoja en formato CSV.');
+        }
+
+        const rows = parseCSV(csvText);
+        let comerciales = [];
+        let teamGoal = 0, teamDone = 0, teamRemaining = 0;
+
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (!row || row.length === 0 || row[0] === "") continue;
+
+            const name = row[0];
+            const contracts = parseInt(row[1]) || 0;
+            const cups = parseInt(row[2]) || 0;
+
+            comerciales.push({ name, contracts, cups });
+
+            // Fila 2 de Sheets (índice 1) para los datos del equipo
+            if (i === 1) {
+                teamDone = parseInt(row[4]) || 0;
+                teamGoal = parseInt(row[5]) || 0;
+                teamRemaining = parseInt(row[6]) || 0;
+            }
+        }
+
+        comerciales.sort((a, b) => b.contracts - a.contracts);
+        const top10 = comerciales.slice(0, 10);
+
+        rankingContainer.innerHTML = '';
+        
+        if (top10.length === 0) {
+            rankingContainer.innerHTML = '<div style="color: #666; text-align: center; margin-top: 30px;">No hay datos de comerciales todavía.</div>';
+        }
+
+        top10.forEach((c, idx) => {
+            const item = document.createElement('div');
+            item.className = 'ranking-item';
+            if (idx === 0) item.classList.add('top-1');
+            if (idx === 1) item.classList.add('top-2');
+            if (idx === 2) item.classList.add('top-3');
+
+            item.innerHTML = `
+                <div class="position">${idx + 1}</div>
+                <div class="name">${c.name}</div>
+                <div class="stats">
+                    <div class="stat-box contracts">📄 ${c.contracts}</div>
+                    <div class="stat-box cups">⚡ ${c.cups}</div>
+                </div>
+            `;
+            rankingContainer.appendChild(item);
+        });
+
+        document.getElementById('val-objetivo').innerText = teamGoal;
+        document.getElementById('val-hechos').innerText = teamDone;
+        document.getElementById('val-restantes').innerText = teamRemaining;
+
+        let donePercent = teamGoal > 0 ? (teamDone / teamGoal) * 100 : 0;
+        document.getElementById('fill-hechos').style.width = `${Math.min(donePercent, 100)}%`;
+
+        let remainingPercent = teamGoal > 0 ? (teamRemaining / teamGoal) * 100 : 0;
+        document.getElementById('fill-restantes').style.width = `${Math.max(0, Math.min(remainingPercent, 100))}%`;
+
+    } catch (error) {
+        console.error("Error cargando el Dashboard:", error);
+        rankingContainer.innerHTML = `<div style="color: #ffaa44; text-align: center; margin-top: 30px; font-size: 0.9rem;">
+            ⚠️ Error de conexión<br><br>${error.message}
+        </div>`;
+    }
+}
+
+window.onload = () => {
+    fetchDashboardData();
+    setInterval(fetchDashboardData, REFRESH_INTERVAL);
+};
+</body>
+</html>
