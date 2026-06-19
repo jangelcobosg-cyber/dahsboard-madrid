@@ -73,20 +73,10 @@
             padding-right: 5px;
         }
 
-        /* Barra de scroll personalizada para diseño oscuro */
-        .ranking-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        .ranking-list::-webkit-scrollbar-track {
-            background: #13131a;
-        }
-        .ranking-list::-webkit-scrollbar-thumb {
-            background: #2a2a3d;
-            border-radius: 3px;
-        }
-        .ranking-list::-webkit-scrollbar-thumb:hover {
-            background: #FF8600;
-        }
+        .ranking-list::-webkit-scrollbar { width: 6px; }
+        .ranking-list::-webkit-scrollbar-track { background: #13131a; }
+        .ranking-list::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
+        .ranking-list::-webkit-scrollbar-thumb:hover { background: #FF8600; }
 
         .ranking-item {
             display: flex;
@@ -108,158 +98,59 @@
         .ranking-item.top-2 { border-left-color: #ffaa44; }
         .ranking-item.top-3 { border-left-color: #ffcc88; }
 
-        .position {
-            font-size: 1.3rem;
-            font-weight: bold;
-            width: 35px;
-            color: #797991;
-        }
+        .position { font-size: 1.3rem; font-weight: bold; width: 35px; color: #797991; }
         .top-1 .position { color: #FF8600; font-size: 1.5rem; }
         .top-2 .position { color: #ffaa44; }
         .top-3 .position { color: #ffcc88; }
 
-        .name {
-            flex: 1;
-            font-weight: 600;
-            font-size: 1.1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            padding-right: 10px;
-        }
+        .name { flex: 1; font-weight: 600; font-size: 1.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px; }
 
-        .stats {
-            display: flex;
-            gap: 12px;
-        }
+        .stats { display: flex; gap: 12px; }
 
         .stat-box {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background-color: #0d0d12;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
+            display: flex; align-items: center; gap: 5px; background-color: #0d0d12;
+            padding: 6px 10px; border-radius: 6px; font-size: 0.9rem; font-weight: bold;
         }
-
         .stat-box.contracts { color: #FF8600; }
         .stat-box.cups { color: #a0a0b8; }
 
         /* COLUMNA CENTRAL: Título Principal */
         .center-col {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            justify-content: center; align-items: center; text-align: center;
             background: radial-gradient(circle at center, #241404 0%, #13131a 100%);
             border: 1px solid #412403;
         }
 
-        .center-col h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            color: #ffffff;
-            font-weight: 800;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+        .center-col h1 { font-size: 3.5rem; margin: 0; color: #ffffff; font-weight: 800; letter-spacing: -1px; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .center-col h2 { font-size: 1.9rem; margin: 15px 0 0 0; color: #FF8600; font-weight: 500; text-transform: uppercase; letter-spacing: 4px; }
+        .center-icon { font-size: 5rem; margin-top: 40px; filter: drop-shadow(0 0 15px rgba(255, 134, 0, 0.4)); animation: float 3s ease-in-out infinite alternate; }
 
-        .center-col h2 {
-            font-size: 1.9rem;
-            margin: 15px 0 0 0;
-            color: #FF8600;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-
-        .center-icon {
-            font-size: 5rem;
-            margin-top: 40px;
-            filter: drop-shadow(0 0 15px rgba(255, 134, 0, 0.4));
-            animation: float 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
 
         /* COLUMNA DERECHA: Contadores y Barras Modernas */
-        .right-col {
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .right-title {
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .right-col { justify-content: space-between; gap: 20px; }
+        .right-title { color: #ffffff; font-size: 1.5rem; margin-top: 0; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
         .widget-card {
-            background-color: #1a1a24;
-            border-radius: 14px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 1;
-            border: 1px solid #252538;
+            background-color: #1a1a24; border-radius: 14px; padding: 22px;
+            display: flex; flex-direction: column; justify-content: center; flex: 1; border: 1px solid #252538;
         }
 
-        .widget-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 12px;
-        }
+        .widget-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .widget-label { font-size: 0.95rem; color: #9292a6; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        .widget-value { font-size: 2.8rem; font-weight: 800; color: #ffffff; }
 
-        .widget-label {
-            font-size: 0.95rem;
-            color: #9292a6;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .widget-value {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        /* Color especial para contratos hechos */
         .card-hechos .widget-value { color: #FF8600; }
         .card-hechos { border-left: 4px solid #FF8600; }
 
-        /* Contenedor de la barra de progreso */
         .progress-container {
-            background-color: #0d0d12;
-            height: 12px;
-            border-radius: 6px;
-            width: 100%;
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            background-color: #0d0d12; height: 12px; border-radius: 6px; width: 100%;
+            overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
+        .progress-fill { height: 100%; border-radius: 6px; width: 0%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        .progress-fill {
-            height: 100%;
-            border-radius: 6px;
-            width: 0%; /* Se actualiza con JS */
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Colores de las barras */
         .card-objetivo .progress-fill { background-color: #4a4a61; width: 100%; }
-        .card-hechos .progress-fill { 
-            background: linear-gradient(90deg, #ff5100, #FF8600); 
-            box-shadow: 0 0 10px rgba(255, 134, 0, 0.6);
-        }
+        .card-hechos .progress-fill { background: linear-gradient(90deg, #ff5100, #FF8600); box-shadow: 0 0 10px rgba(255, 134, 0, 0.6); }
         .card-restantes .progress-fill { background: linear-gradient(90deg, #3d3d5c, #5c5c8a); }
     </style>
 </head>
@@ -271,7 +162,7 @@
                 <span>🏆 Top 10 Ventas</span>
             </div>
             <div class="ranking-list" id="ranking-list">
-                <div style="color: #666; text-align: center; margin-top: 30px;">Cargando ranking...</div>
+                <div style="color: #666; text-align: center; margin-top: 30px;">Iniciando conexión segura...</div>
             </div>
         </div>
 
@@ -283,15 +174,12 @@
 
         <div class="col right-col">
             <div class="right-title">Métricas de Equipo</div>
-
             <div class="widget-card card-objetivo">
                 <div class="widget-header">
                     <div class="widget-label">🎯 Objetivo Diario</div>
                     <div class="widget-value" id="val-objetivo">0</div>
                 </div>
-                <div class="progress-container">
-                    <div class="progress-fill"></div>
-                </div>
+                <div class="progress-container"><div class="progress-fill"></div></div>
             </div>
 
             <div class="widget-card card-hechos">
@@ -299,9 +187,7 @@
                     <div class="widget-label">🚀 Contratos Hechos</div>
                     <div class="widget-value" id="val-hechos">0</div>
                 </div>
-                <div class="progress-container">
-                    <div class="progress-fill" id="fill-hechos"></div>
-                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-hechos"></div></div>
             </div>
 
             <div class="widget-card card-restantes">
@@ -309,129 +195,119 @@
                     <div class="widget-label">⏳ Restantes para Objetivo</div>
                     <div class="widget-value" id="val-restantes">0</div>
                 </div>
-                <div class="progress-container">
-                    <div class="progress-fill" id="fill-restantes"></div>
-                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-restantes"></div></div>
             </div>
-
         </div>
     </div>
 
     <script>
-// CONFIGURACIÓN PRINCIPAL: Ya tiene tu enlace largo y correcto
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJouw7E7O5oK5E3RNuAxLKweuPUpK8-ZFGdF5BRy8yS4UuVeLjrbpHV-J7-Bz3E3PJ5g9eT7ib9szp/pub?gid=0&single=true&output=csv'; 
-const REFRESH_INTERVAL = 4000; // 4 segundos
+        // CONFIGURACIÓN YA PREPARADA CON TU SHEET ID REAL
+        const SPREADSHEET_ID = '165tofxJ_nT31p0OtdwQF6gK5SNa2jnum5vG0B2kQCVs';
+        const SHEET_NAME = 'Hoja 1'; // ⚠️ IMPORTANTE: Si la pestaña de tu Sheet se llama de otra forma, cámbialo aquí.
+        const REFRESH_INTERVAL = 4000;
 
-// Función experta que detecta automáticamente si hay comas (,) o puntos y comas (;)
-function parseCSV(text) {
-    const delimiter = text.includes(';') ? ';' : ',';
-    let rows = [], row = [], currentCell = '', insideQuotes = false;
-    
-    for (let i = 0; i < text.length; i++) {
-        let char = text[i], nextChar = text[i + 1];
-        if (char === '"' && insideQuotes && nextChar === '"') { currentCell += '"'; i++; } 
-        else if (char === '"') { insideQuotes = !insideQuotes; } 
-        else if (char === delimiter && !insideQuotes) { row.push(currentCell.trim()); currentCell = ''; } 
-        else if ((char === '\n' || char === '\r') && !insideQuotes) {
-            if (char === '\r' && nextChar === '\n') i++;
-            row.push(currentCell.trim()); rows.push(row); row = []; currentCell = '';
-        } else { currentCell += char; }
-    }
-    if (currentCell !== '' || row.length > 0) { row.push(currentCell.trim()); rows.push(row); }
-    return rows;
-}
+        async function fetchDashboardData() {
+            const rankingContainer = document.getElementById('ranking-list');
+            // Usamos la API JSON de Google que esquiva los bloqueos de navegador
+            const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
-async function fetchDashboardData() {
-    const rankingContainer = document.getElementById('ranking-list');
+            try {
+                // Añadimos un timestamp para evitar la caché rebelde
+                const response = await fetch(`${url}&t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error("Google rechazó la conexión.");
+                
+                let text = await response.text();
+                
+                // Limpiar la envoltura para quedarnos con el JSON puro
+                const startPos = text.indexOf('{');
+                const endPos = text.lastIndexOf('}');
+                if (startPos === -1 || endPos === -1) throw new Error("No se encontraron los datos. Verifica que la pestaña se llame 'Hoja 1'.");
+                
+                const jsonString = text.substring(startPos, endPos + 1);
+                const data = JSON.parse(jsonString);
+                
+                let comerciales = [];
+                let teamDone = 0, teamGoal = 0, teamRemaining = 0;
+                let isFirstDataRow = false;
 
-    // Validación corregida (sin trampa)
-    if (!CSV_URL || CSV_URL === '') {
-        rankingContainer.innerHTML = '<div style="color: #ffaa44; text-align: center; margin-top: 30px;">⚠️ Falta pegar el enlace CSV en el código.</div>';
-        return;
-    }
+                // Mapear los datos según las posiciones de tu foto
+                data.table.rows.forEach(row => {
+                    if (!row || !row.c) return;
 
-    try {
-        const cacheBusterUrl = `${CSV_URL}&t=${new Date().getTime()}`;
-        const response = await fetch(cacheBusterUrl);
-        
-        if (!response.ok) throw new Error(`Google rechazó la conexión (Error ${response.status}).`);
-        
-        const csvText = await response.text();
-        
-        if (csvText.trim().startsWith('<')) {
-            throw new Error('Google está devolviendo una web. Asegúrate de que publicaste la hoja en formato CSV.');
-        }
+                    // Nombre en columna A (índice 0)
+                    const name = row.c[0] && row.c[0].v != null ? String(row.c[0].v).trim() : null;
+                    
+                    if (name && name !== '' && name.toLowerCase() !== 'comerciales') {
+                        // Contratos en columna B (1), CUPS en columna C (2)
+                        const contracts = row.c[1] && row.c[1].v != null ? Number(row.c[1].v) : 0;
+                        const cups = row.c[2] && row.c[2].v != null ? Number(row.c[2].v) : 0;
+                        
+                        comerciales.push({ name, contracts, cups });
 
-        const rows = parseCSV(csvText);
-        let comerciales = [];
-        let teamGoal = 0, teamDone = 0, teamRemaining = 0;
+                        // Leer los datos del equipo SOLO de la primera fila real (donde está Paco en tu foto)
+                        if (!isFirstDataRow) {
+                            // Hechos en E (4), Objetivo en F (5), Restantes en G (6)
+                            if (row.c[4] && row.c[4].v != null) teamDone = Number(row.c[4].v);
+                            if (row.c[5] && row.c[5].v != null) teamGoal = Number(row.c[5].v);
+                            if (row.c[6] && row.c[6].v != null) teamRemaining = Number(row.c[6].v);
+                            isFirstDataRow = true;
+                        }
+                    }
+                });
 
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-            if (!row || row.length === 0 || row[0] === "") continue;
+                // Ordenar por contratos (de más a menos)
+                comerciales.sort((a, b) => b.contracts - a.contracts);
+                const top10 = comerciales.slice(0, 10);
 
-            const name = row[0];
-            const contracts = parseInt(row[1]) || 0;
-            const cups = parseInt(row[2]) || 0;
+                // Dibujar en el HTML
+                rankingContainer.innerHTML = '';
+                
+                if (top10.length === 0) {
+                    rankingContainer.innerHTML = '<div style="color: #666; text-align: center; margin-top: 30px;">Aún no hay contratos registrados.</div>';
+                }
 
-            comerciales.push({ name, contracts, cups });
+                top10.forEach((c, idx) => {
+                    const item = document.createElement('div');
+                    item.className = 'ranking-item';
+                    if (idx === 0) item.classList.add('top-1');
+                    if (idx === 1) item.classList.add('top-2');
+                    if (idx === 2) item.classList.add('top-3');
 
-            // Fila 2 de Sheets (índice 1) para los datos del equipo
-            if (i === 1) {
-                teamDone = parseInt(row[4]) || 0;
-                teamGoal = parseInt(row[5]) || 0;
-                teamRemaining = parseInt(row[6]) || 0;
+                    item.innerHTML = `
+                        <div class="position">${idx + 1}</div>
+                        <div class="name">${c.name}</div>
+                        <div class="stats">
+                            <div class="stat-box contracts">📄 ${c.contracts}</div>
+                            <div class="stat-box cups">⚡ ${c.cups}</div>
+                        </div>
+                    `;
+                    rankingContainer.appendChild(item);
+                });
+
+                // Actualizar números del equipo
+                document.getElementById('val-objetivo').innerText = teamGoal;
+                document.getElementById('val-hechos').innerText = teamDone;
+                document.getElementById('val-restantes').innerText = teamRemaining;
+
+                // Actualizar barras
+                let donePercent = teamGoal > 0 ? (teamDone / teamGoal) * 100 : 0;
+                document.getElementById('fill-hechos').style.width = `${Math.min(donePercent, 100)}%`;
+
+                let remainingPercent = teamGoal > 0 ? (teamRemaining / teamGoal) * 100 : 0;
+                document.getElementById('fill-restantes').style.width = `${Math.max(0, Math.min(remainingPercent, 100))}%`;
+
+            } catch (error) {
+                console.error("Detalle del error:", error);
+                rankingContainer.innerHTML = `<div style="color: #ffaa44; text-align: center; margin-top: 30px; font-size: 0.9rem;">
+                    ⚠️ Hubo un problema al leer el Google Sheet<br><br>${error.message}
+                </div>`;
             }
         }
 
-        comerciales.sort((a, b) => b.contracts - a.contracts);
-        const top10 = comerciales.slice(0, 10);
-
-        rankingContainer.innerHTML = '';
-        
-        if (top10.length === 0) {
-            rankingContainer.innerHTML = '<div style="color: #666; text-align: center; margin-top: 30px;">No hay datos de comerciales todavía.</div>';
-        }
-
-        top10.forEach((c, idx) => {
-            const item = document.createElement('div');
-            item.className = 'ranking-item';
-            if (idx === 0) item.classList.add('top-1');
-            if (idx === 1) item.classList.add('top-2');
-            if (idx === 2) item.classList.add('top-3');
-
-            item.innerHTML = `
-                <div class="position">${idx + 1}</div>
-                <div class="name">${c.name}</div>
-                <div class="stats">
-                    <div class="stat-box contracts">📄 ${c.contracts}</div>
-                    <div class="stat-box cups">⚡ ${c.cups}</div>
-                </div>
-            `;
-            rankingContainer.appendChild(item);
-        });
-
-        document.getElementById('val-objetivo').innerText = teamGoal;
-        document.getElementById('val-hechos').innerText = teamDone;
-        document.getElementById('val-restantes').innerText = teamRemaining;
-
-        let donePercent = teamGoal > 0 ? (teamDone / teamGoal) * 100 : 0;
-        document.getElementById('fill-hechos').style.width = `${Math.min(donePercent, 100)}%`;
-
-        let remainingPercent = teamGoal > 0 ? (teamRemaining / teamGoal) * 100 : 0;
-        document.getElementById('fill-restantes').style.width = `${Math.max(0, Math.min(remainingPercent, 100))}%`;
-
-    } catch (error) {
-        console.error("Error cargando el Dashboard:", error);
-        rankingContainer.innerHTML = `<div style="color: #ffaa44; text-align: center; margin-top: 30px; font-size: 0.9rem;">
-            ⚠️ Error de conexión<br><br>${error.message}
-        </div>`;
-    }
-}
-
-window.onload = () => {
-    fetchDashboardData();
-    setInterval(fetchDashboardData, REFRESH_INTERVAL);
-};
+        window.onload = () => {
+            fetchDashboardData();
+            setInterval(fetchDashboardData, REFRESH_INTERVAL);
+        };
+    </script>
 </body>
 </html>
