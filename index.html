@@ -265,7 +265,8 @@
                     }
                 });
 
-                comerciales.sort((a, b) => b.contracts - a.contracts);
+                // ORDENACIÓN CON DESEMPATE: Primero por CUPS, si empatan (da 0), pasa a evaluar los contratos.
+                comerciales.sort((a, b) => b.cups - a.cups || b.contracts - a.contracts);
                 const top10 = comerciales.slice(0, 10);
 
                 rankingContainer.innerHTML = '';
