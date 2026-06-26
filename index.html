@@ -81,10 +81,12 @@
             display: flex;
             align-items: center;
             background-color: #1a1a24;
-            padding: 14px 18px;
+            padding: 16px 20px; /* Ligeramente más padding para que se vea más robusto */
             border-radius: 10px;
             border-left: 4px solid #3a3a4f;
             transition: transform 0.2s, background-color 0.2s;
+            flex: 1; /* ESTO HACE QUE RELLENEN TODO EL ESPACIO VERTICAL */
+            min-height: 55px; /* Evita que se encojan demasiado si la pantalla es muy pequeña */
         }
 
         .ranking-item:hover {
@@ -96,81 +98,126 @@
         .ranking-item.top-2 { border-left-color: #ffaa44; }
         .ranking-item.top-3 { border-left-color: #ffcc88; }
 
-        .position { font-size: 1.3rem; font-weight: bold; width: 35px; color: #797991; }
-        .top-1 .position { color: #FF8600; font-size: 1.5rem; }
+        .position { font-size: 1.4rem; font-weight: bold; width: 40px; color: #797991; }
+        .top-1 .position { color: #FF8600; font-size: 1.6rem; }
         .top-2 .position { color: #ffaa44; }
         .top-3 .position { color: #ffcc88; }
 
-        .name { flex: 1; font-weight: 600; font-size: 1.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px; }
+        .name { flex: 1; font-weight: 600; font-size: 1.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px; }
 
         .stats { display: flex; gap: 12px; }
 
         .stat-box {
             display: flex; align-items: center; gap: 5px; background-color: #0d0d12;
-            padding: 6px 10px; border-radius: 6px; font-size: 0.9rem; font-weight: bold;
+            padding: 8px 12px; border-radius: 6px; font-size: 0.95rem; font-weight: bold;
         }
         .stat-box.contracts { color: #FF8600; }
         .stat-box.cups { color: #a0a0b8; }
 
-        /* COLUMNA CENTRAL: Título Principal */
+        /* COLUMNA CENTRAL: Totalmente centrada */
         .center-col {
-            justify-content: center; align-items: center; text-align: center;
+            align-items: center; text-align: center;
             background: radial-gradient(circle at center, #241404 0%, #13131a 100%);
             border: 1px solid #412403;
+            justify-content: center;
+            gap: 20px;
         }
 
         .center-col h1 { font-size: 3.5rem; margin: 0; color: #ffffff; font-weight: 800; letter-spacing: -1px; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .center-col h2 { font-size: 1.9rem; margin: 15px 0 0 0; color: #FF8600; font-weight: 500; text-transform: uppercase; letter-spacing: 4px; }
+        .center-col h2 { font-size: 1.9rem; margin: 0; color: #FF8600; font-weight: 500; text-transform: uppercase; letter-spacing: 4px; display: none; }
         
         .center-logo { 
-            max-width: 250px;
-            margin-top: 40px; 
+            max-width: 230px;
+            margin: 10px 0;
             filter: drop-shadow(0 0 15px rgba(255, 134, 0, 0.2)); 
             animation: float 3s ease-in-out infinite alternate; 
         }
 
         @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
 
-        /* COLUMNA DERECHA: Contadores y Barras Modernas */
-        .right-col { justify-content: space-between; gap: 20px; }
-        .right-title { color: #ffffff; font-size: 1.5rem; margin-top: 0; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-
+        /* WIDGETS COMUNES */
         .widget-card {
-            background-color: #1a1a24; border-radius: 14px; padding: 22px;
-            display: flex; flex-direction: column; justify-content: center; flex: 1; border: 1px solid #252538;
+            background-color: #1a1a24; 
+            border-radius: 14px; 
+            padding: 22px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            border: 1px solid #252538;
+            border-left: 4px solid #FF8600;
             transition: all 0.5s ease;
         }
 
-        .widget-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-        .widget-label { font-size: 0.95rem; color: #9292a6; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
-        .widget-value { font-size: 2.8rem; font-weight: 800; color: #ffffff; transition: color 0.5s ease; }
+        .widget-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .widget-label { font-size: 1rem; color: #9292a6; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        
+        .team-stats { font-size: 2.3rem; font-weight: 800; color: #ffffff; margin: 5px 0; display: flex; align-items: baseline; }
+        .stat-highlight { color: #FF8600; transition: color 0.5s ease; }
+        .stat-divider { color: #555; font-size: 1.8rem; margin: 0 8px; font-weight: 400; }
+        .stat-total { color: #ffffff; font-size: 1.8rem; }
+        
+        .remaining-text { font-size: 0.95rem; color: #9292a6; font-weight: 500; margin-top: 5px; margin-bottom: 8px; }
+        .remaining-text span { color: #ffffff; font-weight: bold; font-size: 1.1rem; margin-left: 5px; transition: color 0.5s ease;}
 
-        .card-hechos .widget-value { color: #FF8600; }
-        .card-hechos { border-left: 4px solid #FF8600; }
-
-        /* ESTADO DE ÉXITO (VERDE) PARA AMBAS TARJETAS */
-        .card-hechos.goal-reached, .card-restantes.goal-reached { 
-            border-left-color: #00e676; 
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.15); 
-        }
-        .card-hechos.goal-reached .widget-value, .card-restantes.goal-reached .widget-value { 
-            color: #00e676; 
-            text-shadow: 0 0 15px rgba(0, 230, 118, 0.4); 
-        }
-        .card-hechos.goal-reached .progress-fill, .card-restantes.goal-reached .progress-fill { 
-            background: linear-gradient(90deg, #00c853, #00e676) !important; 
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.6) !important; 
-        }
-
+        /* BARRAS DE PROGRESO */
         .progress-container {
-            background-color: #0d0d12; height: 12px; border-radius: 6px; width: 100%;
-            overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            background-color: #0d0d12; 
+            height: 10px; 
+            border-radius: 5px; 
+            width: 100%;
+            overflow: hidden; 
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            margin-top: 5px;
         }
-        .progress-fill { height: 100%; border-radius: 6px; width: 0%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease; }
+        .progress-fill { 
+            height: 100%; 
+            border-radius: 5px; 
+            width: 0%; 
+            background: linear-gradient(90deg, #ff5100, #FF8600); 
+            box-shadow: 0 0 10px rgba(255, 134, 0, 0.6);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease; 
+        }
 
-        .card-objetivo .progress-fill { background-color: #4a4a61; width: 100%; }
-        .card-hechos .progress-fill { background: linear-gradient(90deg, #ff5100, #FF8600); box-shadow: 0 0 10px rgba(255, 134, 0, 0.6); }
-        .card-restantes .progress-fill { background: linear-gradient(90deg, #3d3d5c, #5c5c8a); }
+        /* ESTADO DE ÉXITO (VERDE) PARA WIDGETS Y BARRAS */
+        .goal-reached { 
+            border-left-color: #00e676 !important; 
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.15) !important; 
+            background-color: #14241c;
+            border: 1px solid #1c3d2a;
+        }
+        .goal-reached .stat-highlight { 
+            color: #00e676 !important; 
+            text-shadow: 0 0 15px rgba(0, 230, 118, 0.4) !important; 
+        }
+        .goal-reached .remaining-text span { 
+            color: #00e676 !important; 
+        }
+        .goal-reached .progress-fill {
+            background: linear-gradient(90deg, #00c853, #00e676) !important;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.6) !important;
+        }
+
+        /* WIDGET GENERAL (CENTRO) */
+        .center-general-card {
+            width: 85%;
+            padding: 25px;
+            margin: 0;
+        }
+        .center-general-card .team-stats { font-size: 3.2rem; justify-content: center; margin: 10px 0;}
+        .center-general-card .stat-total { font-size: 2.2rem; }
+        .center-general-card .remaining-text { text-align: center; font-size: 1.1rem;}
+        .center-general-card .remaining-text span { font-size: 1.4rem; }
+        .center-general-card .widget-label { text-align: center; width: 100%; font-size: 1.1rem;}
+
+        /* COLUMNA DERECHA: Equipos */
+        .right-col { justify-content: space-between; gap: 15px; }
+        .right-title { color: #ffffff; font-size: 1.5rem; margin-top: 0; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .team-card {
+            flex: 1;
+            padding: 16px 22px;
+        }
+
     </style>
 </head>
 <body>
@@ -187,35 +234,87 @@
 
         <div class="col center-col">
             <h1>Equipo Madrid</h1>
-            <h2></h2>
             <img src="logo.png" alt="Logo Grupo Acerca" class="center-logo">
+            
+            <div class="widget-card center-general-card" id="card-general">
+                <div class="widget-header">
+                    <div class="widget-label">🎯 OBJETIVO GENERAL MADRID</div>
+                </div>
+                <div class="team-stats">
+                    <span id="gen-hechos" class="stat-highlight">0</span>
+                    <span class="stat-divider">/</span>
+                    <span id="gen-objetivo" class="stat-total">0</span>
+                </div>
+                <div class="remaining-text">
+                    Contratos restantes: <span id="gen-restantes">0</span>
+                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-general"></div></div>
+            </div>
         </div>
 
         <div class="col right-col">
-            <div class="right-title">Métricas de Equipo</div>
-            <div class="widget-card card-objetivo">
+            <div class="right-title">Métricas por Equipo</div>
+            
+            <div class="widget-card team-card" id="card-sara">
                 <div class="widget-header">
-                    <div class="widget-label">🎯 Objetivo Diario</div>
-                    <div class="widget-value" id="val-objetivo">0</div>
+                    <div class="widget-label">👩‍💼 Equipo Sara</div>
                 </div>
-                <div class="progress-container"><div class="progress-fill"></div></div>
+                <div class="team-stats">
+                    <span id="sara-hechos" class="stat-highlight">0</span>
+                    <span class="stat-divider">/</span>
+                    <span id="sara-objetivo" class="stat-total">0</span>
+                </div>
+                <div class="remaining-text">
+                    Restantes: <span id="sara-restantes">0</span>
+                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-sara"></div></div>
             </div>
 
-            <div class="widget-card card-hechos" id="card-hechos-container">
+            <div class="widget-card team-card" id="card-pablo">
                 <div class="widget-header">
-                    <div class="widget-label">🚀 Contratos Hechos</div>
-                    <div class="widget-value" id="val-hechos">0</div>
+                    <div class="widget-label">👨‍💼 Equipo Pablo</div>
                 </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-hechos"></div></div>
+                <div class="team-stats">
+                    <span id="pablo-hechos" class="stat-highlight">0</span>
+                    <span class="stat-divider">/</span>
+                    <span id="pablo-objetivo" class="stat-total">0</span>
+                </div>
+                <div class="remaining-text">
+                    Restantes: <span id="pablo-restantes">0</span>
+                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-pablo"></div></div>
             </div>
 
-            <div class="widget-card card-restantes" id="card-restantes-container">
+            <div class="widget-card team-card" id="card-fran">
                 <div class="widget-header">
-                    <div class="widget-label">⏳ Restantes para Objetivo</div>
-                    <div class="widget-value" id="val-restantes">0</div>
+                    <div class="widget-label">👨‍💼 Equipo Fran</div>
                 </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-restantes"></div></div>
+                <div class="team-stats">
+                    <span id="fran-hechos" class="stat-highlight">0</span>
+                    <span class="stat-divider">/</span>
+                    <span id="fran-objetivo" class="stat-total">0</span>
+                </div>
+                <div class="remaining-text">
+                    Restantes: <span id="fran-restantes">0</span>
+                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-fran"></div></div>
             </div>
+
+            <div class="widget-card team-card" id="card-marina">
+                <div class="widget-header">
+                    <div class="widget-label">👩‍💼 Equipo Marina</div>
+                </div>
+                <div class="team-stats">
+                    <span id="marina-hechos" class="stat-highlight">0</span>
+                    <span class="stat-divider">/</span>
+                    <span id="marina-objetivo" class="stat-total">0</span>
+                </div>
+                <div class="remaining-text">
+                    Restantes: <span id="marina-restantes">0</span>
+                </div>
+                <div class="progress-container"><div class="progress-fill" id="fill-marina"></div></div>
+            </div>
+
         </div>
     </div>
 
@@ -242,10 +341,16 @@
                 const data = JSON.parse(jsonString);
                 
                 let comerciales = [];
-                let teamDone = 0, teamGoal = 0, teamRemaining = 0;
                 let isFirstDataRow = false;
 
-                data.table.rows.forEach(row => {
+                // Variables para almacenar objetivos de la primera fila
+                let genDone = 0, genGoal = 0, genRemaining = 0;
+                let saraDone = 0, saraGoal = 0;
+                let pabloDone = 0, pabloGoal = 0;
+                let franDone = 0, franGoal = 0;
+                let marinaDone = 0, marinaGoal = 0;
+
+                data.table.rows.forEach((row, index) => {
                     if (!row || !row.c) return;
 
                     const name = row.c[0] && row.c[0].v != null ? String(row.c[0].v).trim() : null;
@@ -257,15 +362,33 @@
                         comerciales.push({ name, contracts, cups });
 
                         if (!isFirstDataRow) {
-                            if (row.c[4] && row.c[4].v != null) teamDone = Number(row.c[4].v);
-                            if (row.c[5] && row.c[5].v != null) teamGoal = Number(row.c[5].v);
-                            if (row.c[6] && row.c[6].v != null) teamRemaining = Number(row.c[6].v);
+                            // GENERAL: E(4), F(5), G(6)
+                            if (row.c[4] && row.c[4].v != null) genDone = Number(row.c[4].v);
+                            if (row.c[5] && row.c[5].v != null) genGoal = Number(row.c[5].v);
+                            if (row.c[6] && row.c[6].v != null) genRemaining = Number(row.c[6].v);
+
+                            // EQUIPO SARA: H(7), I(8)
+                            if (row.c[7] && row.c[7].v != null) saraDone = Number(row.c[7].v);
+                            if (row.c[8] && row.c[8].v != null) saraGoal = Number(row.c[8].v);
+
+                            // EQUIPO PABLO: J(9), K(10)
+                            if (row.c[9] && row.c[9].v != null) pabloDone = Number(row.c[9].v);
+                            if (row.c[10] && row.c[10].v != null) pabloGoal = Number(row.c[10].v);
+
+                            // EQUIPO FRAN: L(11), M(12)
+                            if (row.c[11] && row.c[11].v != null) franDone = Number(row.c[11].v);
+                            if (row.c[12] && row.c[12].v != null) franGoal = Number(row.c[12].v);
+
+                            // EQUIPO MARINA: N(13), O(14)
+                            if (row.c[13] && row.c[13].v != null) marinaDone = Number(row.c[13].v);
+                            if (row.c[14] && row.c[14].v != null) marinaGoal = Number(row.c[14].v);
+
                             isFirstDataRow = true;
                         }
                     }
                 });
 
-                // ORDENACIÓN CON DESEMPATE: Primero por CUPS, si empatan (da 0), pasa a evaluar los contratos.
+                // ORDENACIÓN CON DESEMPATE: Primero por CUPS, luego contratos.
                 comerciales.sort((a, b) => b.cups - a.cups || b.contracts - a.contracts);
                 const top10 = comerciales.slice(0, 10);
 
@@ -293,30 +416,46 @@
                     rankingContainer.appendChild(item);
                 });
 
-                document.getElementById('val-objetivo').innerText = teamGoal;
-                document.getElementById('val-hechos').innerText = teamDone;
+                // ACTUALIZAR WIDGET GENERAL (CENTRO)
+                document.getElementById('gen-hechos').innerText = genDone;
+                document.getElementById('gen-objetivo').innerText = genGoal;
+                document.getElementById('gen-restantes').innerText = genRemaining < 0 ? 0 : genRemaining;
                 
-                // LIMITAR A 0: Si los restantes bajan de cero, muestra 0
-                const displayRemaining = teamRemaining < 0 ? 0 : teamRemaining;
-                document.getElementById('val-restantes').innerText = displayRemaining;
+                const cardGeneral = document.getElementById('card-general');
+                let genPercent = genGoal > 0 ? (genDone / genGoal) * 100 : 0;
+                document.getElementById('fill-general').style.width = `${Math.min(genPercent, 100)}%`;
 
-                // LÓGICA DEL OBJETIVO CONSEGUIDO (VERDE EN AMBAS TARJETAS)
-                const cardHechos = document.getElementById('card-hechos-container');
-                const cardRestantes = document.getElementById('card-restantes-container');
-                
-                if (teamGoal > 0 && teamDone >= teamGoal) {
-                    cardHechos.classList.add('goal-reached');
-                    cardRestantes.classList.add('goal-reached');
+                if (genGoal > 0 && genDone >= genGoal) {
+                    cardGeneral.classList.add('goal-reached');
                 } else {
-                    cardHechos.classList.remove('goal-reached');
-                    cardRestantes.classList.remove('goal-reached');
+                    cardGeneral.classList.remove('goal-reached');
                 }
 
-                let donePercent = teamGoal > 0 ? (teamDone / teamGoal) * 100 : 0;
-                document.getElementById('fill-hechos').style.width = `${Math.min(donePercent, 100)}%`;
+                // FUNCIÓN AUXILIAR PARA ACTUALIZAR EQUIPOS
+                function updateTeamUI(teamName, done, goal) {
+                    document.getElementById(`${teamName}-hechos`).innerText = done;
+                    document.getElementById(`${teamName}-objetivo`).innerText = goal;
+                    
+                    let remaining = goal - done;
+                    document.getElementById(`${teamName}-restantes`).innerText = remaining < 0 ? 0 : remaining;
 
-                let remainingPercent = teamGoal > 0 ? (teamRemaining / teamGoal) * 100 : 0;
-                document.getElementById('fill-restantes').style.width = `${Math.max(0, Math.min(remainingPercent, 100))}%`;
+                    // Calcular porcentaje y asignarlo a la barra de progreso
+                    let percent = goal > 0 ? (done / goal) * 100 : 0;
+                    document.getElementById(`fill-${teamName}`).style.width = `${Math.min(percent, 100)}%`;
+
+                    const card = document.getElementById(`card-${teamName}`);
+                    if (goal > 0 && done >= goal) {
+                        card.classList.add('goal-reached');
+                    } else {
+                        card.classList.remove('goal-reached');
+                    }
+                }
+
+                // ACTUALIZAR LOS 4 EQUIPOS
+                updateTeamUI('sara', saraDone, saraGoal);
+                updateTeamUI('pablo', pabloDone, pabloGoal);
+                updateTeamUI('fran', franDone, franGoal);
+                updateTeamUI('marina', marinaDone, marinaGoal);
 
             } catch (error) {
                 console.error("Detalle del error:", error);
