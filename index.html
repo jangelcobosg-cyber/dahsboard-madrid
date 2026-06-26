@@ -24,7 +24,7 @@
             grid-template-columns: 1fr 1.2fr 1fr;
             gap: 25px;
             width: 100%;
-            max-width: 1550px;
+            max-width: 1750px; /* Ampliado para aprovechar mejor pantallas de gran formato como de 85" */
             height: 88vh;
         }
 
@@ -72,21 +72,21 @@
             padding-right: 5px;
         }
 
-        .ranking-list::-webkit-scrollbar { width: 6px; }
-        .ranking-list::-webkit-scrollbar-track { background: #13131a; }
-        .ranking-list::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
-        .ranking-list::-webkit-scrollbar-thumb:hover { background: #FF8600; }
+        .ranking-list::-webkit-scrollbar, .team-list::-webkit-scrollbar { width: 6px; }
+        .ranking-list::-webkit-scrollbar-track, .team-list::-webkit-scrollbar-track { background: #13131a; }
+        .ranking-list::-webkit-scrollbar-thumb, .team-list::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
+        .ranking-list::-webkit-scrollbar-thumb:hover, .team-list::-webkit-scrollbar-thumb:hover { background: #FF8600; }
 
         .ranking-item {
             display: flex;
             align-items: center;
             background-color: #1a1a24;
-            padding: 16px 20px; /* Ligeramente más padding para que se vea más robusto */
+            padding: 16px 20px;
             border-radius: 10px;
             border-left: 4px solid #3a3a4f;
             transition: transform 0.2s, background-color 0.2s;
-            flex: 1; /* ESTO HACE QUE RELLENEN TODO EL ESPACIO VERTICAL */
-            min-height: 55px; /* Evita que se encojan demasiado si la pantalla es muy pequeña */
+            flex: 1;
+            min-height: 55px;
         }
 
         .ranking-item:hover {
@@ -120,20 +120,60 @@
             background: radial-gradient(circle at center, #241404 0%, #13131a 100%);
             border: 1px solid #412403;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .center-col h1 { font-size: 3.5rem; margin: 0; color: #ffffff; font-weight: 800; letter-spacing: -1px; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .center-col h2 { font-size: 1.9rem; margin: 0; color: #FF8600; font-weight: 500; text-transform: uppercase; letter-spacing: 4px; display: none; }
         
         .center-logo { 
-            max-width: 230px;
-            margin: 10px 0;
+            max-width: 210px;
+            margin: 5px 0;
             filter: drop-shadow(0 0 15px rgba(255, 134, 0, 0.2)); 
             animation: float 3s ease-in-out infinite alternate; 
         }
 
         @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
+
+        /* ESTILO DEL TOP 1 DESTACADO EN EL CENTRO */
+        .top1-banner {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF8600;
+            background: linear-gradient(90deg, rgba(36, 20, 4, 0.6), rgba(26, 26, 36, 0.8));
+            border: 1px solid rgba(255, 134, 0, 0.4);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 10px 0;
+            width: fit-content; /* Permite que el contenedor crezca con el nombre */
+            max-width: 95%; /* Evita que se desborde si el nombre es demasiado largo */
+            text-align: center;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(255, 134, 0, 0.15);
+            animation: pulse 2.5s infinite alternate ease-in-out;
+            line-height: 1.4;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 134, 0, 0.15); border-color: rgba(255, 134, 0, 0.4); }
+            100% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 134, 0, 0.35); border-color: rgba(255, 134, 0, 0.8); }
+        }
+
+        /* COLUMNA DERECHA Y LISTADO DE TARJETAS DE EQUIPO */
+        .right-col { gap: 0; }
+        .right-title { color: #ffffff; font-size: 1.5rem; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Contenedor dinámico de equipos con scroll inteligente si no caben */
+        .team-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            padding-right: 5px;
+            width: 100%;
+        }
 
         /* WIDGETS COMUNES */
         .widget-card {
@@ -146,6 +186,13 @@
             border: 1px solid #252538;
             border-left: 4px solid #FF8600;
             transition: all 0.5s ease;
+        }
+
+        .team-card {
+            flex: 1;
+            padding: 16px 22px;
+            min-height: 110px; /* Asegura un tamaño mínimo confortable en cualquier pantalla */
+            box-sizing: border-box;
         }
 
         .widget-header { display: flex; justify-content: space-between; align-items: baseline; }
@@ -209,15 +256,6 @@
         .center-general-card .remaining-text span { font-size: 1.4rem; }
         .center-general-card .widget-label { text-align: center; width: 100%; font-size: 1.1rem;}
 
-        /* COLUMNA DERECHA: Equipos */
-        .right-col { justify-content: space-between; gap: 15px; }
-        .right-title { color: #ffffff; font-size: 1.5rem; margin-top: 0; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-
-        .team-card {
-            flex: 1;
-            padding: 16px 22px;
-        }
-
     </style>
 </head>
 <body>
@@ -235,6 +273,8 @@
         <div class="col center-col">
             <h1>Equipo Madrid</h1>
             <img src="logo.png" alt="Logo Grupo Acerca" class="center-logo">
+            
+            <div id="top1-destacado" class="top1-banner">🏆 TOP 1 COMERCIAL : Buscando...</div>
             
             <div class="widget-card center-general-card" id="card-general">
                 <div class="widget-header">
@@ -255,66 +295,69 @@
         <div class="col right-col">
             <div class="right-title">Métricas por Equipo</div>
             
-            <div class="widget-card team-card" id="card-sara">
-                <div class="widget-header">
-                    <div class="widget-label">👩‍💼 Equipo Sara</div>
+            <div class="team-list">
+                
+                <div class="widget-card team-card" id="card-sara">
+                    <div class="widget-header">
+                        <div class="widget-label">👩‍💼 Equipo Sara</div>
+                    </div>
+                    <div class="team-stats">
+                        <span id="sara-hechos" class="stat-highlight">0</span>
+                        <span class="stat-divider">/</span>
+                        <span id="sara-objetivo" class="stat-total">0</span>
+                    </div>
+                    <div class="remaining-text">
+                        Restantes: <span id="sara-restantes">0</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" id="fill-sara"></div></div>
                 </div>
-                <div class="team-stats">
-                    <span id="sara-hechos" class="stat-highlight">0</span>
-                    <span class="stat-divider">/</span>
-                    <span id="sara-objetivo" class="stat-total">0</span>
-                </div>
-                <div class="remaining-text">
-                    Restantes: <span id="sara-restantes">0</span>
-                </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-sara"></div></div>
-            </div>
 
-            <div class="widget-card team-card" id="card-pablo">
-                <div class="widget-header">
-                    <div class="widget-label">👨‍💼 Equipo Pablo</div>
+                <div class="widget-card team-card" id="card-pablo">
+                    <div class="widget-header">
+                        <div class="widget-label">👨‍💼 Equipo Pablo</div>
+                    </div>
+                    <div class="team-stats">
+                        <span id="pablo-hechos" class="stat-highlight">0</span>
+                        <span class="stat-divider">/</span>
+                        <span id="pablo-objetivo" class="stat-total">0</span>
+                    </div>
+                    <div class="remaining-text">
+                        Restantes: <span id="pablo-restantes">0</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" id="fill-pablo"></div></div>
                 </div>
-                <div class="team-stats">
-                    <span id="pablo-hechos" class="stat-highlight">0</span>
-                    <span class="stat-divider">/</span>
-                    <span id="pablo-objetivo" class="stat-total">0</span>
-                </div>
-                <div class="remaining-text">
-                    Restantes: <span id="pablo-restantes">0</span>
-                </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-pablo"></div></div>
-            </div>
 
-            <div class="widget-card team-card" id="card-fran">
-                <div class="widget-header">
-                    <div class="widget-label">👨‍💼 Equipo Fran</div>
+                <div class="widget-card team-card" id="card-fran">
+                    <div class="widget-header">
+                        <div class="widget-label">👨‍💼 Equipo Fran</div>
+                    </div>
+                    <div class="team-stats">
+                        <span id="fran-hechos" class="stat-highlight">0</span>
+                        <span class="stat-divider">/</span>
+                        <span id="fran-objetivo" class="stat-total">0</span>
+                    </div>
+                    <div class="remaining-text">
+                        Restantes: <span id="fran-restantes">0</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" id="fill-fran"></div></div>
                 </div>
-                <div class="team-stats">
-                    <span id="fran-hechos" class="stat-highlight">0</span>
-                    <span class="stat-divider">/</span>
-                    <span id="fran-objetivo" class="stat-total">0</span>
-                </div>
-                <div class="remaining-text">
-                    Restantes: <span id="fran-restantes">0</span>
-                </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-fran"></div></div>
-            </div>
 
-            <div class="widget-card team-card" id="card-marina">
-                <div class="widget-header">
-                    <div class="widget-label">👩‍💼 Equipo Marina</div>
+                <div class="widget-card team-card" id="card-marina">
+                    <div class="widget-header">
+                        <div class="widget-label">👩‍💼 Equipo Marina</div>
+                    </div>
+                    <div class="team-stats">
+                        <span id="marina-hechos" class="stat-highlight">0</span>
+                        <span class="stat-divider">/</span>
+                        <span id="marina-objetivo" class="stat-total">0</span>
+                    </div>
+                    <div class="remaining-text">
+                        Restantes: <span id="marina-restantes">0</span>
+                    </div>
+                    <div class="progress-container"><div class="progress-fill" id="fill-marina"></div></div>
                 </div>
-                <div class="team-stats">
-                    <span id="marina-hechos" class="stat-highlight">0</span>
-                    <span class="stat-divider">/</span>
-                    <span id="marina-objetivo" class="stat-total">0</span>
-                </div>
-                <div class="remaining-text">
-                    Restantes: <span id="marina-restantes">0</span>
-                </div>
-                <div class="progress-container"><div class="progress-fill" id="fill-marina"></div></div>
-            </div>
 
+            </div>
         </div>
     </div>
 
@@ -388,7 +431,7 @@
                     }
                 });
 
-                // ORDENACIÓN CON DESEMPATE: Primero por CUPS, luego contratos.
+                // REGLA DE ORDENACIÓN: Primero por CUPS de mayor a menor. En caso de empate, por contratos realizados de mayor a menor.
                 comerciales.sort((a, b) => b.cups - a.cups || b.contracts - a.contracts);
                 const top10 = comerciales.slice(0, 10);
 
@@ -415,6 +458,14 @@
                     `;
                     rankingContainer.appendChild(item);
                 });
+
+                // ACTUALIZAR EL DESTACADO DEL TOP 1 EN LA PARTE CENTRAL
+                const top1Element = document.getElementById('top1-destacado');
+                if (comerciales.length > 0) {
+                    top1Element.innerText = `🏆 TOP 1 COMERCIAL : ${comerciales[0].name}`;
+                } else {
+                    top1Element.innerText = `🏆 TOP 1 COMERCIAL : ---`;
+                }
 
                 // ACTUALIZAR WIDGET GENERAL (CENTRO)
                 document.getElementById('gen-hechos').innerText = genDone;
@@ -451,7 +502,7 @@
                     }
                 }
 
-                // ACTUALIZAR LOS 4 EQUIPOS
+                // ACTUALIZAR LOS 4 EQUIPOS DE LA DERECHA
                 updateTeamUI('sara', saraDone, saraGoal);
                 updateTeamUI('pablo', pabloDone, pabloGoal);
                 updateTeamUI('fran', franDone, franGoal);
